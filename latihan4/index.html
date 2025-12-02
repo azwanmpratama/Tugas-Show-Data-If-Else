@@ -1,0 +1,50 @@
+<html>
+
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+        const app = document.getElementById('app');
+        const root = ReactDOM.createRoot(app);
+        // 1. Komponen Header (Anak)
+        function Header() {
+            return <h1>Belajar React Foundations</h1>;
+        }
+        // 2. Komponen Paragraf (Anak)
+        function Content() {
+            return <p>Ini adalah paragraf yang dibuat dengan komponen.</p>;
+        }
+
+        function MyComponent() {
+            const imgPlaceholder = "https://placehold.co/600x400";
+            return ( 
+                <div>
+                    <button>{1 + 2}</button><br />
+                    <button>{Date.now()}</button><br />
+                    <img src={imgPlaceholder} />
+                </div>
+            );
+        }
+
+        // 3. Komponen Utama (Induk)
+        function App() {
+            return (
+                <div>
+                    <Header />
+                    <Content />
+                    <MyComponent />
+                </div>
+            );
+        }
+        root.render(<App />);
+
+    </script>
+
+</body>
+
+</html>

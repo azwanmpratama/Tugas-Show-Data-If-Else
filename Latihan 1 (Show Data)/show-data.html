@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azwan Phone Store</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        const app = document.getElementById('app');
+        const root = ReactDOM.createRoot(app);
+
+        const phoneData = [
+            { 
+                name: "iPhone 17", 
+                brand: "Apple", // tambah brand
+                price: 25749000, 
+                discount: 5,
+                imageUrl: "https://media.dinomarket.com/docs/imgTD/2025-10/DM_C36874BC-E8AA-1039-177E76137B09D3EA_ll.jpg" //tambah foto
+            },
+            { 
+                name: "ROG Phone 9 Pro", 
+                brand: "Asus", 
+                price: 14999000, 
+                discount: 10,
+                imageUrl: "https://dlcdnwebimgs.asus.com/gain/0C812547-3EDA-4EE9-99E0-179317A468CC/w1000/h732"
+            },
+            { 
+                name: "Ipad Pro 11 inch (M4)", 
+                brand: "Apple", 
+                price: 33999000, 
+                discount: 20,
+                imageUrl: "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/ipad-pro-11-inch-13-inch.png" 
+            },
+            { 
+                name: "Samsung Galaxy Z Fold7", 
+                brand: "Samsung", 
+                price: 20000000, 
+                discount: 0,
+                imageUrl: "https://statik.tempo.co/data/2022/11/03/id_1154071/1154071_720.jpg" 
+            },
+        ];
+
+        // update component: brand dan buat logika if else
+        function Product({ name, price, discount = 0, image, brand }) {
+            const imgStyle = {
+                width: "150px",
+                height: "150px",
+                objectFit: "contain",
+                border: "1px solid #ddd",
+                padding: "5px",
+                borderRadius: "8px"
+            };
+
+            const tagStyle = {
+                display: "inline-block",
+                padding: "4px 8px",
+                backgroundColor: "#f0f0f0",
+                borderRadius: "4px",
+                fontSize: "12px",
+                marginTop: "5px",
+                marginRight: "5px"
+            };
+
+            // logic if else untuk os
+            let operatingSystem = "";
+            
+            if (brand === "Apple") {
+                operatingSystem = "iOS / iPadOS";
+            } else {
+                operatingSystem = "Android";
+            }
+
+            return (
+                <div style={{marginBottom: "30px", borderBottom: "1px solid #eee", paddingBottom: "20px"}}>
+                    <img src={image} alt={name} style={imgStyle} />
+                    
+                    <h2>{name}</h2>
+                    
+                    {/* show brand dan OS */}
+                    <div style={{marginBottom: "10px"}}>
+                        <span style={tagStyle}>Brand: {brand}</span>
+                        <span style={{...tagStyle, backgroundColor: "#e3f2fd"}}>OS: {operatingSystem}</span>
+                    </div>
+
+                    {discount > 0 && <p><s>Rp {price.toLocaleString()}</s> ({discount}%)</p>}
+                    <p><b>Rp {(parseInt(price) - parseInt(price) * (parseInt(discount) / 100)).toLocaleString()}</b></p>
+                </div>
+            );
+        }
+
+        // update parent: oper props "brand"
+        function App() {
+            return (
+                <div style={{fontFamily: "Arial, sans-serif", padding: "20px"}}>
+                    <h1>Daftar Produk</h1>
+                    {phoneData.map((phone, id) => (
+                        <Product
+                            key={id}
+                            name={phone.name}
+                            price={phone.price}
+                            discount={phone.discount}
+                            image={phone.imageUrl} 
+                            brand={phone.brand}
+                        ></Product>
+                    ))}
+                </div>
+            );
+        }
+
+        root.render(<App />);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+
+<body>
+    <div id="app"></div>
+    <script type="text/javascript">
+
+        // 1. Pilih elemen target
+        const app = document.getElementById('app');
+        // 2. Buat elemen baru
+        const header = document.createElement('h1');
+        // 3. Isi konten
+        const text = 'Belajar React Foundations';
+        const headerContent = document.createTextNode(text);
+        header.appendChild(headerContent);
+        // 4. Tampilkan ke layar
+        app.appendChild(header);
+
+    </script>
+</body>
+
+</html>
